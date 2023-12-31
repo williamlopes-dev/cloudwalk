@@ -53,7 +53,7 @@ Attached is a spreadsheet with hypothetical transactional data. Imagine that you
 # Project
 ## Data analysis
 ### Review
-I think that is not a really good dataset to analyse, could be more balanced among true/false chargebacks. If we have more data by customer/merchant, we also will be able to do other types of analysis. But, I have extracted some new informations using the own data, like Major Industry Identifier (MII), transaction hour and transaction week day, these new informations growed the precision to almost 10%. Finally, using RandomForestClassifier, I achived 92% of precision based on f1-score weighted average.
+I think that is not a really good dataset to analyse, could be more balanced among true/false chargebacks. If we have more data to customer/merchant, we also will be able to do other types of analysis. But, I have extracted some new informations using the own data, like Major Industry Identifier (MII), transaction hour and transaction week day, these new informations growed the precision to almost 10%. Finally, using RandomForestClassifier, I achived 92% of precision based on f1-score weighted average.
 
 ### Step by step
 1. **Check inconsistences**: Not found.
@@ -100,7 +100,7 @@ This software was projected to guarantee a good level of security, so it was imp
 - Account validation to prevent unauthorized access between different accounts.
 
 ### Token system
-We generate a access token for each account, these tokens won't expire by themselves. We can block any token, any time too. The client will use the account access token and username/password to generate your own fresh access token. The fresh access token generated will used on fraud recommendation endpoint and any other part of the software desired. With the token system implemented, we can guarantee:
+We will generate an access token for each account, these tokens won't expire by themselves. We can block any token, any time too. The client will use the account access token and username/password to generate your own fresh access token. The fresh access token generated will used on fraud recommendation endpoint and any other part of the software desired. With the token system implemented, we can guarantee:
 - Block any access at any time by token.
 - If the client lost your username/password, the hacker can't access without the account access token.
 - If the client lost your token, the hacker can't access without the username/password.
