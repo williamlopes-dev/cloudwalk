@@ -73,28 +73,28 @@ We generate a access token for each account, these tokens won't expire by themse
 ### Configuration
 Put all of your configuration in the file `fraud_prevention/.env`.
 
-* **JWT_SECRET_KEY**:
+* `JWT_SECRET_KEY`:
     * **Description**: Specifies the secret key used to generate JWT tokens.
     * **Default value**: f60bd1ecb1b9a8f0784c49ad0cce9700c74980f2898fd37673fc31223d7419dd
-* **PRIVATE_IPS**: 
+* `PRIVATE_IPS`: 
     * **Description**: Specifies the allowed IPs to access private endpoints.
     * **Default value**: `127.0.0.1`
-* **FRESH_TOKEN_EXPIRES_IN_SECONDS**:
+* `FRESH_TOKEN_EXPIRES_IN_SECONDS`:
     * **Description**: Specifies the time in seconds that a fresh access token will be valid.
     * **Default value**: 600 (10 minutes)
-* **TRANSACTIONS_IN_A_ROW_MAX_ALLOWED**: 
+* `TRANSACTIONS_IN_A_ROW_MAX_ALLOWED`: 
     * **Description**: Specifies the maximum number of consecutive transactions allowed within a certain time window.
     * **Default value**: 5
-* **TRANSACTIONS_IN_A_ROW_WINDOW_IN_SECONDS**: 
+* `TRANSACTIONS_IN_A_ROW_WINDOW_IN_SECONDS`: 
     * **Description**: Specifies the time window in seconds within which consecutive transactions are counted.
     * **Default value**: 1800 (30 minutes)
-* **HIGH_AMOUNT_IN_RISK_HOURS_START**: 
+* `HIGH_AMOUNT_IN_RISK_HOURS_START`: 
     * **Description**: Specifies the start hour of the high-risk period for transactions with high amounts.
     * **Default value**: 22 (10 PM)
-* **HIGH_AMOUNT_IN_RISK_HOURS_END**: 
+* `HIGH_AMOUNT_IN_RISK_HOURS_END`: 
     * **Description**: Specifies the end hour of the high-risk period for transactions with high amounts.
     * **Default value**: 6 (6 AM)
-* **HIGH_AMOUNT_IN_RISK_HOURS_MAX_AMOUNT**: 
+* `HIGH_AMOUNT_IN_RISK_HOURS_MAX_AMOUNT`: 
     * **Description**: Specifies the maximum amount allowed for transactions during the high-risk period.
     * **Default value**: 1000
 
