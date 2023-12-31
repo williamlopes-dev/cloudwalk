@@ -52,8 +52,8 @@ Attached is a spreadsheet with hypothetical transactional data. Imagine that you
 ---
 # Project
 ## Data analysis
-### Insights
-...
+### Review
+I think that is not a really good dataset to analyse, could be more balanced among true/false chargebacks. If we have more data by customer/merchant, we also will be able to do other types of analysis. But, I have extracted some new informations using the own data, like Major Industry Identifier (MII), transaction hour and transaction week day, these new informations growed the precision to almost 10%. Finally, using RandomForestClassifier, I achived 92% of precision based on f1-score weighted average.
 
 ### Step by step
 1. **Check inconsistences**: Not found.
