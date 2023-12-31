@@ -7,15 +7,15 @@
     ---
     > The information flow could be explained with credit card data, like card holder name, card number, card verification code, expiratoin date, etc, encrypted and transitioned between bank accounts of the previows step.
     ---
-    > The role of the main players is guarantee the transactions occurred with safety between real people and companies, transfering money between bank accounts, and blocking any type of fraud/risk attempts.
+    > The role of the main players is to guarantee the safety of occurred transactions between real people and companies, transferring money between bank accounts, and blocking any type of fraud/risk attempts.
 
 2. Explain the difference between acquirer, sub-acquirer, and payment gateway, and how the flow explained in the previous question changes for these players.
-    > All of that could be explained with a step by step flow, like: 1) payment gateway: receives buyer and order informations and sends to 2) sub-acquirer: receives data and do some validations, like risk/fraud prevention, and sends to 3) acquirer: receives the transaction request and do some validations, like account balance, account status (blocked?), risk prevention, and approves or denies the transaction. If approved, the money will out from buyer bank account and get in to seller bank account, the money will pass by acquirer/sub-acquirer bank accounts too.
+    > All of that could be explained through a step by step flow, like: 1) payment gateway: receives buyer and order informations and sends to 2) sub-acquirer: receives data and do some validations, like risk/fraud prevention, and sends to 3) acquirer: receives the transaction request and make validations, like account balance, account status (blocked?), risk prevention, and approve it or denies the transaction. If approved, the money will be out from buyer bank account and will be in to seller bank account, the money will pass through acquirer/sub-acquirer bank accounts too.
 
 3. Explain what chargebacks are, how they differ from a cancellation and what is their connection with fraud in the acquiring world.
-    > Chargesbacks are disputes when customers does not receives they products and the seller company said that were sent. So they are in conflict, and the chargeback exists to solve this problem, where each side will send documents to prove your point of view.
+    > Chargebacks happens when customers do not receive their products and the seller company guarantee that the products were sent. So they are in conflict and the chargeback exists to solve this problem, where each side will send documents to prove their point of view.
     ---
-    > The difference between chargeback and cancellation is on "conflict" situation. Because in a charge cancellation, both side agree with terms, in a chargeback it's not true.
+    > The difference between chargeback and cancellation is the "conflict" situation. Because in a charge cancellation, both sides agree with terms, in a chargeback is the opposite, they disagree from each other.
 
 ### 2.2. Solve the problem
 A client sends you an email asking for a chargeback status. You check the system and see that we have received his defense documents and sent them to the issuer, but the issuer has not accepted our defense. They claim that the cardholder continued to affirm that she did not receive the product, and our documents were not sufficient to prove otherwise.
@@ -23,25 +23,22 @@ A client sends you an email asking for a chargeback status. You check the system
 You respond to our client informing that the issuer denied the defense, and the next day he emails you back, extremely angry and disappointed, claiming the product was delivered and that this chargeback is not right.
 
 Considering that the chargeback reason is “Product/Service not provided”, what would you do in this situation?
-> I will inform the client about current chargeback status, be clear about issuer responsability in this process, to say that I understand this situation can be frustrating and I will suggest considering collecting other proves to send extra information, like security cameras, individual testimonials, delivery receipts, screenshots, chatting between both.
+> I will inform the client about current chargeback status, being clear about issuer responsability in this process, saying that I understand that the current situation can be frustrating and I will suggest him to collect other proves to send us extra information, like security cameras, individual testimonials, delivery receipts, screenshots, chatting between both, etc.
 ---
-> As an extra point, I will send a documentation to guarantee that situation never happen again, doing some adjusts in his delivery process, like photos and videos boxing expensive produtcs, tracking logs with receiver signature (delivery receipt) on each delivery.
+> As an extra point, I will send a documentation in order to guarantee that the situation never happens again, doing some adjusts in his delivery process, like photos and videos boxing expensive produtcs, tracking logs with receiver signature (delivery receipt) on each delivery.
 
 ## 3. Get your hands dirty
-Attached is a spreadsheet with hypothetical transactional data. Imagine that you are
-trying to understand if there is any kind of suspicious behavior.
+Attached is a spreadsheet with hypothetical transactional data. Imagine that you are trying to understand if there is any kind of suspicious behavior.
 1. Analyze the data provided and present your conclusions.
-    > With just this dataset is hard to solve the fraud transactions problem, because we have only "transactions data", but it is a beginning and some aspects we can bring up. Like chargebacks by hour, "what hours have more risk?", or by chargebacks by MII, "what issuers are frequently with chargebacks issues?", or calculate the average amount by merchant and check the new transaction if amount is between min and max amount accepted, but remeber to check standard deviation, because some merchant could sell products/services with big difference in their prices. However, we have some simple patterns to analyse too, like frequency of transactions with the same credit card, or credit card used in different devices, users, merchants in a small window time.
+    > With just this dataset is hard to solve the fraud transactions problem, because we have only "transactions data", but it is a beginning and some aspects we can bring up. Like chargebacks by hour, "what hours have more risk?", or by chargebacks by MII, "what issuers are frequently with chargebacks issues?", or calculate the average amount by merchant and check the new transaction if amount is between min and max amount accepted, remembering to check standard deviation, because some merchant could sell products/services along with big price differences. However, we have some simple patterns to analyse too, like frequency of transactions using the same credit card, or credit card used in different devices, users, merchants in a small window time.
     ---
-    > In the other hand, we can check if merchant was register correctly and if the information are really true, also check how much customers have accepted the transaction by merchant and kick out all merchants who has a small percent of accepted transactions.
+    > On the other hand, we can check if merchant was register correctly and if the information are really true, also check how many customers have accepted the transaction by merchant and kick out all merchants who has a small percentage of accepted transactions.
 
-2. In addition to the spreadsheet data, what other data would you look at to try to
-find patterns of possible fraud?
-    > Location based on IP, customer score (like Serasa), lifetime score (how much approves/denies/chargebacks?, number of used credit cards by year, nominal cards or borrowed cards?), buyer behavior (week days, average amount, merchants, monthly amount).
+2. In addition to the spreadsheet data, what other data would you look at to try to find patterns of possible fraud?
+    > Location based on IP, customer score (like Serasa), lifetime score (how much approves/denies/chargebacks?, number of credit cards used by year, nominal cards or borrowed cards?), buyer behavior (week days, average amount, merchants, monthly amount).
 
-3. Considering your conclusions, what could you do to prevent fraud and/or
-chargebacks?
-    > TLDR; create a set of params that will score the merchant and the customer based on historical behavior and current profile. At the same time only allow bigger limits after some initial validation, create a rule to only transfer transaction money to merchant bank account after X days.
+3. Considering your conclusions, what could you do to prevent fraud and/or chargebacks?
+    > TLDR; create a set of params that will score the merchant and the customer based on historical behavior and current profile. At the same time only allow bigger limits after some initial validation, create a rule to transfer only transaction money to merchant bank account after X days.
 
 4. How would you monitor identified patterns?
     > Creating a data routine to score after each transaction and chargeback (at start and finish).
@@ -55,14 +52,191 @@ chargebacks?
 ---
 # Project
 ## Data analysis
-## Fraud prevent endpoint
-### Run server
-```shell
-cd cloudwalk/fraud_prevention
-python3 server.py
-```
+
+## Software
+This software was projected to guarantee a good level of security, so it was implemented with:
+- Forced ssl connection.
+- JWT authentication.
+- Token blocklist.
+- Token expiration.
+- Refresh token.
+- Private endpoints by allowed IPs.
+- Account validation to prevent unauthorized access between different accounts.
+
+### Token system
+We generate a access token for each account, these tokens won't expire by themselves. We can block any token, any time too. The client will use the account access token and username/password to generate your own fresh access token. The fresh access token generated will used on fraud recommendation endpoint and any other part of the software desired. With the token system implemented, we can guarantee:
+- Block any access at any time by token.
+- If the client lost your username/password, the hacker can't access without the account access token.
+- If the client lost your token, the hacker can't access without the username/password.
+- Fresh tokens will invalidate yourseves after a specific period without renew the token.
+
+### Configuration
+Put all of your configuration in the file `fraud_prevention/.env`.
+
+* **JWT_SECRET_KEY**:
+    * **Description**: Specifies the secret key used to generate JWT tokens.
+    * **Default value**: f60bd1ecb1b9a8f0784c49ad0cce9700c74980f2898fd37673fc31223d7419dd
+* **PRIVATE_IPS**: 
+    * **Description**: Specifies the allowed IPs to access private endpoints.
+    * **Default value**: `127.0.0.1`
+* **FRESH_TOKEN_EXPIRES_IN_SECONDS**:
+    * **Description**: Specifies the time in seconds that a fresh access token will be valid.
+    * **Default value**: 600 (10 minutes)
+* **TRANSACTIONS_IN_A_ROW_MAX_ALLOWED**: 
+    * **Description**: Specifies the maximum number of consecutive transactions allowed within a certain time window.
+    * **Default value**: 5
+* **TRANSACTIONS_IN_A_ROW_WINDOW_IN_SECONDS**: 
+    * **Description**: Specifies the time window in seconds within which consecutive transactions are counted.
+    * **Default value**: 1800 (30 minutes)
+* **HIGH_AMOUNT_IN_RISK_HOURS_START**: 
+    * **Description**: Specifies the start hour of the high-risk period for transactions with high amounts.
+    * **Default value**: 22 (10 PM)
+* **HIGH_AMOUNT_IN_RISK_HOURS_END**: 
+    * **Description**: Specifies the end hour of the high-risk period for transactions with high amounts.
+    * **Default value**: 6 (6 AM)
+* **HIGH_AMOUNT_IN_RISK_HOURS_MAX_AMOUNT**: 
+    * **Description**: Specifies the maximum amount allowed for transactions during the high-risk period.
+    * **Default value**: 1000
+
+### Versions
+- Python 3.8.9
+- Pip 23.3.2
+- Install dependencies:
+    ```
+    cd cloudwalk
+    pip install -r requirements.txt
+    ```
+
 ### Run tests
 ```shell
 cd cloudwalk/tests
 python3 -m unittest
 ```
+
+### Run server
+```shell
+cd cloudwalk/fraud_prevention
+python3 server.py
+```
+
+### API documentation
+* **POST** `/private/token`
+    * **Description**:
+        * Generates an access token for the API.
+        * This token does not expire and is used to generate an exclusive fresh access token for the requested account.
+        * **Important**: This endpoint is only available for configured CloudWalk IPs and can be changed using `PRIVATE_IPS` env var.
+    * **Body** `application/json`:
+        * **account_id** `integer`: Account ID.
+    * **Response**:
+        * **token** `string`: Access token.
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X POST \
+        https://localhost:5000/private/token \
+        -H 'Content-Type: application/json' \
+        -d '{
+            "account_id": <account_id>
+        }'
+        ```
+* **DELETE** `/private/token/block`
+    * **Description**:
+        * Adds an access token to blocklist.
+        * Any access token type is allowed, fresh or not.
+        * **Important**: This endpoint is only available for configured CloudWalk IPs and can be changed using `PRIVATE_IPS` env var.
+    * **Body** `application/json`:
+        * **token** `string`: Access token.
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X DELETE \
+        https://localhost:5000/private/token/block \
+        -H 'Content-Type: application/json' \
+        -d '{
+            "token": "<token>"
+        }'
+        ```
+* **POST** `/auth`
+    * **Description**:
+        * Generates an fresh access token for the API.
+        * This token expire in 10 minutes by default and can be changed using `FRESH_TOKEN_EXPIRES_IN_SECONDS` env var, 60 seconds is the minimum value accepted.
+        * The fresh access token can be refreshed using accessing `/auth/refresh` endpoint.
+        * **Important**: This token is used to perform all authenticated requests. If exposed, this fresh access token can be added to blocklist internally or when expired.
+    * **Header**:
+        * **Authorization** `string`: Access token. **Format**: `Bearer <token>`
+    * **Body** `application/json`:
+        * **username** `string`: Username.
+        * **password** `string`: Password.
+    * **Response**:
+        * **token** `string`: Fresh access token.
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X POST \
+        https://localhost:5000/auth \
+        -H 'Content-Type: application/json' \
+        -H 'Authorization: Bearer <token>' \
+        -d '{
+            "username": "<username>",
+            "password": "<password>"
+        }'
+        ```
+* **GET** `/auth/refresh`
+    * **Description**:
+        * Renews an expiring but still active fresh access token.
+        * This token expire in 10 minutes by default and can be changed using `FRESH_TOKEN_EXPIRES_IN_SECONDS` env var, 60 seconds is the minimum value accepted.
+        * This token is used to perform any authenticated requested.
+    * **Header**:
+        * **Authorization** `string`: Fresh access token. **Format**: `Bearer <token>`
+    * **Response**:
+        * **token** `string`: New fresh access token.
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X GET \
+        https://localhost:5000/auth/refresh \
+        -H 'Content-Type: application/json' \
+        -H 'Content-Type: application/json' \
+        -H 'Authorization: Bearer <token>'
+        ```
+* **DELETE** `/auth/expire`
+    * **Description**:
+        * Expires an active fresh access token.
+    * **Header**:
+        * **Authorization** `string`: Fresh access token. **Format**: `Bearer <token>`
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X DELETE \
+        https://localhost:5000/auth/expire \
+        -H 'Content-Type: application/json' \
+        -H 'Content-Type: application/json' \
+        -H 'Authorization: Bearer <token>'
+        ```
+* **POST** `/risk/recommendation`
+    * **Description**:
+        * Returns a recommendation for a transaction.
+    * **Header**:
+        * **Authorization** `string`: Fresh access token. **Format**: `Bearer <token>`
+    * **Body** `application/json`:
+        * **transaction_id** `integer`: Transaction ID.
+        * **merchant_id** `integer`: Merchant ID.
+        * **user_id** `integer`: User ID.
+        * **card_number** `string`: Card number. **Format**: `000000******0000`
+        * **transaction_amount** `float`: Transaction amount.
+        * **device_id** `integer`: Device ID.
+        * **transaction_date** `datetime`: Transaction date. **Format**: `YYYY-MM-DDTHH:MM:SS.000000`
+    * **Response**:
+        * **transaction_id** `integer`: Transaction ID.
+        * **recommendation** `string`: `approve` or `deny`.
+    * **Example** with `curl`:
+        ```shell
+        curl -k -X POST \
+        https://localhost:5000/risk/recommendation \
+        -H 'Content-Type: application/json' \
+        -H 'Authorization: Bearer <token>' \
+        -d '{
+            "transaction_id": <transaction_id>,
+            "merchant_id": <merchant_id>,
+            "user_id": <user_id>,
+            "card_number": "<card_number>",
+            "transaction_amount": <transaction_amount>,
+            "device_id": <device_id>,
+            "transaction_date": "<transaction_date>"
+        }'
+        ```
