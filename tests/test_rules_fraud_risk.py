@@ -7,9 +7,9 @@ import datetime
 
 from fraud_prevention.database.transaction import Transaction
 
-from fraud_prevention.rules_fraud_risk import many_transactions_in_a_row, high_amount_in_risk_hours, has_chargeback
+from fraud_prevention.rules_fraud_risk import many_transactions_in_a_row, high_amount_in_risk_hours, has_user_chargeback
 
-class RulesFraudRiskTests(Base):
+class TestRulesFraudRisk(Base):
     def setUp(self):
         super().setUp()
         Transaction.load()
@@ -74,7 +74,7 @@ class RulesFraudRiskTests(Base):
         data["transaction_id"] = 2
         data["transaction_date"] += datetime.timedelta(minutes=1)
 
-        self.assertTrue(has_chargeback(data))
+        self.assertTrue(has_user_chargeback(data))
 
     def test_rules_fraud_risk_false_has_chargeback(self):
         data = {"transaction_id" : 1, "merchant_id" : 29744, "user_id" : 999999, "card_number" : "434505******9116", "transaction_date" : "2019-12-01T23:16:32.812632", "transaction_amount" : 1373.56, "device_id" : 285475}
@@ -86,4 +86,4 @@ class RulesFraudRiskTests(Base):
         data["transaction_id"] = 2
         data["transaction_date"] += datetime.timedelta(minutes=1)
 
-        self.assertFalse(has_chargeback(data))
+        self.assertFalse(has_user_chargeback(data))

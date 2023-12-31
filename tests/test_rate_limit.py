@@ -3,12 +3,12 @@ sys.path.append('../../cloudwalk')
 
 from tests.base import Base
 
-class RateLimitTests(Base):
+class TestRateLimit(Base):
     def setUp(self):
         super().setUp()
         self.account_id = 29744
 
-    def test_private_token_request_until_catch_rate_limit(self):
+    def test_test_private_token_request_until_catch_rate_limit(self):
         i = 0
         while True:
             payload = {"account_id": self.account_id}
@@ -23,7 +23,7 @@ class RateLimitTests(Base):
             i += 1
         self.assertEqual(i, 60)
 
-    def test_login_request_until_catch_rate_limit(self):
+    def test_access_token_request_until_catch_rate_limit(self):
         payload = {"account_id": self.account_id}
         response = self.client.post('/private/token', json=payload)
         access_token = response.get_json()["access_token"]
@@ -32,7 +32,7 @@ class RateLimitTests(Base):
         while True:
             payload = {"username": "test", "password": "test"}
             headers = {"Authorization": f"Bearer {access_token}"}
-            response = self.client.post("/login", json=payload, headers=headers)
+            response = self.client.post("/auth", json=payload, headers=headers)
 
             if response.status_code == 429:
                 break
@@ -50,14 +50,14 @@ class RateLimitTests(Base):
 
         payload = {"username": "test", "password": "test"}
         headers = {"Authorization": f"Bearer {access_token}"}
-        response = self.client.post("/login", json=payload, headers=headers)
+        response = self.client.post("/auth", json=payload, headers=headers)
         fresh_access_token = response.get_json()["access_token"]
 
         i = 0
         while True:
             payload = {"transaction_id" : 2342357, "merchant_id" : self.account_id, "user_id" : 97051, "card_number" : "434505******9116", "transaction_date" : "2019-12-01T23:16:32.812632", "transaction_amount" : 373.56, "device_id" : 285475}
             headers = {"Authorization": f"Bearer {fresh_access_token}"}
-            response = self.client.post("/fraud_prevention", json=payload, headers=headers)
+            response = self.client.post("/risk/recommendation", json=payload, headers=headers)
 
             if response.status_code == 429:
                 break

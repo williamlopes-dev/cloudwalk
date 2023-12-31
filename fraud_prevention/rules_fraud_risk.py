@@ -6,7 +6,7 @@ import datetime, os
 from fraud_prevention.database.transaction import Transaction
 
 def rules_fraud_risk(data):
-    return many_transactions_in_a_row(data) or high_amount_in_risk_hours(data) or has_chargeback(data)
+    return many_transactions_in_a_row(data) or high_amount_in_risk_hours(data) or has_user_chargeback(data)
 
 def many_transactions_in_a_row(data):
     max_transactions_allowed = int(os.getenv("TRANSACTIONS_IN_A_ROW_MAX_ALLOWED", 3))
@@ -32,9 +32,12 @@ def high_amount_in_risk_hours(data):
     end_hour = int(os.getenv("HIGH_AMOUNT_IN_RISK_HOURS_END", 8))
     max_amount = float(os.getenv("HIGH_AMOUNT_IN_RISK_MAX_AMOUNT", 500))
 
-    return (transaction_hour >= start_hour or transaction_hour <= end_hour) and transaction_amount > max_amount
+    if start_hour > end_hour:
+        return (transaction_hour >= start_hour or transaction_hour <= end_hour) and transaction_amount > max_amount
+    else:
+        return transaction_hour >= start_hour and transaction_hour <= end_hour and transaction_amount > max_amount
 
-def has_chargeback(data):
+def has_user_chargeback(data):
     transactions = Transaction.find_by_user_id(data["user_id"])
     if not transactions:
         return False
