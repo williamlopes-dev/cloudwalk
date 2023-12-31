@@ -118,6 +118,7 @@ python3 -m unittest
 cd cloudwalk/fraud_prevention
 python3 server.py
 ```
+> **Observations**: Only username=`test` and password=`test` are allowed. The `merchant_id` is considered `account_id`, so only the identifiers of `merchant_id` column in `files/transactional-sample.csv` will be treated like a valid account.
 
 ### API documentation
 * **POST** `/private/token`
