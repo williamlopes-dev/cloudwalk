@@ -52,6 +52,42 @@ Attached is a spreadsheet with hypothetical transactional data. Imagine that you
 ---
 # Project
 ## Data analysis
+### Insights
+...
+
+### Step by step
+1. **Check inconsistences**: Not found.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/bf7f2663-bbb1-492c-ba5d-671b449b9f1f)
+
+1. **Check data balancing**: Too few chargebacks compared to ok transactions, at least 75% of the customers have a signel transaction and should be more balanced.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/9ba812ad-6456-4128-a4fe-005acc92d18e)
+
+1. **Fill missing values**: Add 999999 to device_id when null.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/0399b574-1726-4f22-a6e5-5ea0d97c1e2c)
+
+1. **Treat data**: Convert datetime, remove null values (not necessary here), convert credit card number to integer.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/bdf5e1db-38a1-4535-a4a8-e7135519c607)
+
+1. **Analyse converging data**: Analyse transaction by hour, week day and MII was a great converging way.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/6a0090b2-7c3a-4bd2-ae36-cf2aa3bfded7)
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/78ce391a-7b12-4987-9979-7df5fd936540)
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/85d9ed1d-803d-4752-b366-f10d9e66e70c)
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/ac117fa5-1bff-4657-a062-f180a438e1e3)
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/fd8dfb0e-f876-4533-b957-bcf5ca37afd5)
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/2ccb7d9f-0b97-4f46-b482-0f440996e8d6)
+
+1. **Prepare train and test data**: Select columns to be utilized, split data, prepare classifier and optimize params with rebalancing options.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/69415aa4-9871-4603-959c-2c4433f9d769)
+
+1. **Validate results**: The model was good to validate when has no chargeback, 96% using f1-score metric. But, when validating a true chargeback, the result was only 68%, will be needed more data.
+
+   ![image](https://github.com/williamlopes-dev/cloudwalk/assets/7537086/1fac0e4f-e060-4308-a769-53b2b80159ac)
 
 ## Software
 This software was projected to guarantee a good level of security, so it was implemented with:
