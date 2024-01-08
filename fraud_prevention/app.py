@@ -163,7 +163,7 @@ def risk_recommendation():
     
     rules_recommendation = rules_fraud_risk(data)
     ml_recommendation = ml_fraud_risk(data)
-    recommendation = "approve" if rules_recommendation and ml_recommendation else "deny"
+    recommendation = "deny" if rules_recommendation or ml_recommendation else "approve"
 
     response = {
         "transaction_id": data["transaction_id"],
